@@ -88,10 +88,11 @@ function set_method(self, method_name, options)
     end
     self.method_name = method_name
     self.method_options = merge(self.method_options, method_options)
-    self.method = getfield(Optim, method_symbol)(; method_options...)
+    self.method = getfield(Optim, method_symbol)(; self.method_options...)
     self.general_options = general_options
-    println("method_options = ", method_options)
-    println("general_options = ", general_options)
+    println("method_options = ", self.method_options)
+    println("general_options = ", self.general_options)
+    flush(stdout)
 end
 
 function minimize(self::Self, out_x)::Tuple{Int,String}
