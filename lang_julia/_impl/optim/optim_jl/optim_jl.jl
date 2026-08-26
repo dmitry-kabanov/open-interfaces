@@ -119,7 +119,17 @@ function minimize(self::Self, out_x)::Tuple{Int,String}
     end
     out_x[:] = copy(Optim.minimizer(result))
 
-    println("res = ", result)
+    println("result = ", result)
+    println("result.method = ", result.method)
+    println("result.iterations = ", result.iterations)
+    println("result.f_calls = ", result.f_calls)
+    println("result.g_calls = ", result.f_calls)
+    println("result.minimum = ", result.minimum)
+    println("result.termination_code = ", result.termination_code)
+    println("result.stopped_by = ", result.stopped_by)
+    println("result.g_residual = ", result.g_residual)
+    flush(stdout)
+
 
     if Optim.converged(result) == true
         status = 0
