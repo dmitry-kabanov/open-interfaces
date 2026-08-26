@@ -70,8 +70,8 @@ function set_method(self, method_name, options)
 
     if haskey(options, :linesearch)
         method_options[:linesearch] =
-            getfield(LineSearches, Symbol(method_params[:linesearch]))()
-        delete!(method_params, :linesearch)
+            getfield(LineSearches, Symbol(options[:linesearch]))()
+        delete!(options, :linesearch)
     end
 
     for (k, v) in options
