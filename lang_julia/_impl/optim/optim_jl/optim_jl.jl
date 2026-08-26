@@ -60,7 +60,7 @@ function set_grad_fn(self::Self, grad_fn)
     self.grad_fn(self.x0, zeros(length(self.x0)), self.user_data)
 end
 
-function set_method(self, method_name, method_params)
+function set_method(self, method_name, options)
     println(
         "[optim::optim_jl] To check available configuration options, " *
         "see https://julianlsolvers.github.io/Optim.jl/stable/user/config/",
@@ -68,13 +68,13 @@ function set_method(self, method_name, method_params)
     general_options = Dict()
     method_options = Dict()
 
-    if haskey(method_params, :linesearch)
+    if haskey(options, :linesearch)
         method_options[:linesearch] =
             getfield(LineSearches, Symbol(method_params[:linesearch]))()
         delete!(method_params, :linesearch)
     end
 
-    for (k, v) in method_params
+    for (k, v) in options
         if k in GENERAL_OPTIONS_NAMES
             general_options[k] = v
         else
