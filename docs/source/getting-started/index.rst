@@ -10,3 +10,4 @@ Getting Started
    example-solve-vdp-c
    example-ivp-burgers-equation-in-python
    example-optim-rosenbrock-python
+   example-optim-rosenbrock-julia
